@@ -1,0 +1,12 @@
+.root {
+  border-radius: 4px;
+  border: 1px solid var(--greyLight);
+  padding: 10px;
+  outline: none;
+}
+
+@media (--small-viewport) {
+  .root {
+    width: 100%;
+  }
+}

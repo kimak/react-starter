@@ -1,0 +1,19 @@
+/* COLORS */
+:root {
+  --black: #000;
+  --greyXLight: #f7f7f7;
+  --greyLight: #e5e5e5;
+  --red: #f74d4a;
+  --yellow: #ffc107;
+  --white: #fff;
+}
+
+/* MEDIA QUERIES */
+@custom-media --small-viewport (max-width: 640px);
+
+/* FONTS */
+:root {
+  --source-sans-pro: "Source Sans Pro", "sans-serif";
+}
+
+/* Z-INDEX */
