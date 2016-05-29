@@ -1,0 +1,42 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 20px);
+  transform: translateY(-50%) translateX(-50%);
+  border: 1px solid var(--black);
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  background-color: var(--white);
+}
+
+.modalOverlay::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--white);
+  opacity: 0.85;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+@media (--medium-viewport) {
+  .modal {
+    width: auto;
+  }
+
+  .closeButton {
+    top: -29px;
+    right: -29px;
+  }
+
+}

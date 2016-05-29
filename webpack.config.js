@@ -1,23 +1,31 @@
 var webpack = require("webpack")
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 var webpackPostcssTools = require("webpack-postcss-tools")
+var HtmlWebpackPlugin = require("html-webpack-plugin")
 
 var production = process.argv.indexOf("--production") > -1
+var utestMode = process.argv.indexOf("--test") > -1
 var config = require("./project.config.js")
 
 var variablesMap = webpackPostcssTools.makeVarMap(config.src+"/css/variables.global.css");
 
+var entry = {
+    landing: config.src+"/index.js",
+    vendor: ["react", "react-dom","redux","react-redux","react-router","react-router-redux","react-intl"],
+}
+var filename = "[name].[hash].bundle.js"
+if(utestMode){
+    entry = {test:config.test}
+    filename= "test.bundle.js"
+}
+
+
 module.exports = {
-    entry: {
-        index: [
-            config.src+"/index.js",
-        ],
-        vendor: ["react", "react-dom","redux","react-redux","react-router","react-router-redux"],
-    },
+    entry,
     output: {
         path: config.dist,
-        filename: "landing.bundle.js",
-        publicPath: "/assets",
+        filename: filename,
+        publicPath: "/",
     },
     devServer: {
         historyApiFallback: true
@@ -45,13 +53,18 @@ module.exports = {
                 ],
             },
             {
+                test: /\.json$/,
+                loader: "json-loader",
+                include: config.src,
+            },
+            {
                 test: /\.(ico|jpe?g|png|gif)$/,
-                loader: "file",
+                loader: "file-loader",
                 query: {
                     name: "[path][name].[ext]",
-                    context: config.src
+                    context:config.src,
                 },
-                include: config.src
+                include: config.src,
             },
             {
                 test: /\.css$/,
@@ -66,17 +79,22 @@ module.exports = {
     },
     plugins: (
     [
-        new ExtractTextPlugin("css/landing.css"),
+        new ExtractTextPlugin("css/landing.[contenthash].css"),
         new webpack.DefinePlugin({
             __PROD__: production
         }),
-        new webpack.optimize.CommonsChunkPlugin(
-            "vendor",/* chunkName */
-            "vendor.bundle.js"/* filename */
-        ),
+        new HtmlWebpackPlugin({
+            filename: "index.html",
+            template: "index.html",
+            excludeChunks: ["tests"]
+        }),
     ]
     .concat(
       production ? [
+          new webpack.optimize.CommonsChunkPlugin(
+              "vendor",/* chunkName */
+              "vendor.[hash].bundle.js"/* filename */
+          ),
           new webpack.optimize.DedupePlugin(),
           new webpack.optimize.AggressiveMergingPlugin(),
           new webpack.optimize.UglifyJsPlugin({

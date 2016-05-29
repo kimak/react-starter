@@ -1,0 +1,22 @@
+.root {
+  height: 60px;
+  font-family: var(--ubuntu);
+  font-weight: bold;
+  background-color: var(--black);
+  position: relative;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+}
+
+.icon {
+  padding: 5px;
+}
+
+.icon svg:hover {
+  fill: #ccc;
+}

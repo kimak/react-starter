@@ -1,42 +1,35 @@
 // External
-import React from "react";
-import ReactDOM from "react-dom";
-import { createStore, applyMiddleware, compose } from "redux"
+import React from "react"
+import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
-import { Router, Route, IndexRoute, browserHistory } from "react-router"
-import { syncHistoryWithStore} from "react-router-redux"
-import thunkMiddleware from "redux-thunk"
-
-// Root reducer
-import rootReducer from "reducers"
-
-// Containers
-import App from "containers/App"
-import PageHome from "containers/PageHome"
 
 // Global CSS
-import "css/layout.css"
+import "css/global.css"
 import "css/normalize.css"
 
-const store = createStore(
-    rootReducer,
-    compose(
-        applyMiddleware(thunkMiddleware),
-        window.devToolsExtension && !__PROD__ ? window.devToolsExtension() : f => f
-    )
-)
+import store from "store"
+import Routes from "Routes"
 
-const history = syncHistoryWithStore(browserHistory, store)
 
-ReactDOM.render(
-    <Provider store={ store }>
-        <div>
-            <Router history={ history }>
-                <Route path="/" component={ App }>
-                      <IndexRoute component= { PageHome } />
-                </Route>
-            </Router>
-        </div>
-    </Provider>,
-    document.getElementById("app")
-)
+const runApp = () => {
+    ReactDOM.render(
+        <Provider store={ store }>
+            <Routes />
+        </Provider>,
+      document.getElementById("app")
+  )
+}
+
+// intl i18n polyfill
+if (!global.Intl) {
+    require.ensure([
+        "intl",
+        //"intl/locale-data/jsonp/en.js"
+    ], function (require) {
+        require("intl");
+        //require("intl/locale-data/jsonp/en.js");
+        runApp()
+    });
+} else {
+    runApp()
+}

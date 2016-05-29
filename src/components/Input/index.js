@@ -7,7 +7,7 @@ export default class Input extends Component {
 
     static propTypes = {
         type: PropTypes.string,
-        customStyle: PropTypes.string,
+        className: PropTypes.string,
         onChange: PropTypes.func,
         name: PropTypes.string,
         inputRef: PropTypes.string,
@@ -22,7 +22,7 @@ export default class Input extends Component {
 
     static defaultProps = {
         type: "text",
-        customStyle: null,
+        className: null,
         onChange: null,
         name: null,
         inputRef: null,
@@ -32,7 +32,7 @@ export default class Input extends Component {
         autoCapitalize: "off",
         autoComplete: "off",
         editable: true,
-        value: null
+        value: ""
     }
 
     state = { value: this.props.value }
@@ -44,7 +44,7 @@ export default class Input extends Component {
     render(){
 
         const {
-            customStyle,
+            className,
             type,
             inputRef,
             name,
@@ -67,7 +67,7 @@ export default class Input extends Component {
                 autoFocus={ autoFocus }
                 onChange={ this.onChange }
                 value={ this.state.value }
-                className={ classNames(styles.root, customStyle) }
+                className={ classNames(styles.root, className) }
              />
         )
     }

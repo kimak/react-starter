@@ -1,0 +1,10 @@
+.root {
+  font-family: var(--open-sans);
+  font-size: 12px;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.root:hover {
+  text-decoration: underline;
+}

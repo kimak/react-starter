@@ -1,19 +1,19 @@
 /* COLORS */
 :root {
   --black: #000;
-  --greyXLight: #f7f7f7;
-  --greyLight: #e5e5e5;
-  --red: #f74d4a;
-  --yellow: #ffc107;
   --white: #fff;
 }
 
 /* MEDIA QUERIES */
-@custom-media --small-viewport (max-width: 640px);
+@custom-media --small-viewport screen and (max-width: 767px);
+@custom-media --medium-viewport screen and (min-width: 768px);
+@custom-media --large-viewport screen and (min-width: 1024px);
+@custom-media --wide-viewport screen and (min-width: 1280px);
 
 /* FONTS */
 :root {
-  --source-sans-pro: "Source Sans Pro", "sans-serif";
+  --open-sans: 'Open Sans', sans-serif;
+  --ubuntu: 'Ubuntu', sans-serif;
 }
 
 /* Z-INDEX */
