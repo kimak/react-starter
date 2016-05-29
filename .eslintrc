@@ -11,7 +11,10 @@
       "browser": true
     },
     "globals": {
-      "__DEV__": true,
+      "describe": true,
+      "before": true,
+      "it": true,
+      "assert": true,
       "__PROD__": true,
     },
     "plugins": [

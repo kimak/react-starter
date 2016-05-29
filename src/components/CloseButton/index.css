@@ -1,0 +1,21 @@
+.root {
+  background-color: #ccc;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.root:hover {
+  background-color: var(--black);
+}
+
+.icon {
+  display: block;
+  padding-left: 7px;
+  padding-top: 7px;
+}
+
+.root:hover svg {
+  fill: var(--white);
+}

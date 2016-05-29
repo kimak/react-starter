@@ -1,0 +1,16 @@
+.root {
+  border-radius: 20px;
+  padding: 10px 25px 10px 25px;
+  font-style: italic;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--white);
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+}
+
+.defaultColor {
+  background-color: var(--black);
+  border: 1px solid var(--black);
+}
